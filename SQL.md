@@ -32,5 +32,8 @@ match output {
 }
 var closeStatus = testDB -> close();
 ```
-This package provides support for selecting, inserting, deleting, updating, batch updating, and executing stored procedures. In addition to that there is a ‘Close’ action that will close the connection pool when executed.
+As shown in the above example, once the required database operation is done, 'close' function can be called to close the connection pool.
+
+This package provides support for selecting, inserting, deleting, updating, batch updating, and executing stored procedures. 
+
 
