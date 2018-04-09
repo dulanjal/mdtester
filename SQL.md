@@ -11,9 +11,9 @@ endpoint sql:Client testDB {
    options: {maximumPoolSize:1}
 };
 ```
-NOTE: You can find the full list of connection properties in the struct ‘ConnectionProperties’.
+**NOTE**: You can find the full list of connection properties in the struct ‘ConnectionProperties’.
 
-NOTE: If you are using a database of types: MySQL, SQL Server, Oracle, Sybase, PostgreSQL, DB2, HSQLDB, H2, or Derby, it is recommended to use the Ballerina types specific to them. This package provides a generic type that could be used if you wish to connect to a database type not in that list. Having said that, as shown in the above example, this type can be used to connect to those standard database types as well.
+**NOTE**: If you are using a database of types: MySQL, SQL Server, Oracle, Sybase, PostgreSQL, DB2, HSQLDB, H2, or Derby, it is recommended to use the Ballerina types specific to them. This package provides a generic type that could be used if you wish to connect to a database type not in that list. Having said that, as shown in the above example, this type can be used to connect to those standard database types as well.
 
 Once the endpoint is created, database operations could be executed through that. Following is an example of a SELECT:
 ```
