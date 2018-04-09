@@ -4,7 +4,7 @@ The first step to access a database is to create an 'Endpoint', which is a virtu
 
 Example:
 ```
-**endpoint sql:Client** testDB {
+endpoint sql:Client testDB {
    url: mysql://localhost:3306/testdb
    username: "testuser",
    password: "testpwd",
