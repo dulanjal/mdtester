@@ -39,13 +39,12 @@ As shown in the above example, once the required database operation is done, 'cl
 Following is an INSERT example to demonstrate the usage of parameters:
 
 ```
-sql:Parameter para1 = {sqlType:sql:TYPE_VARCHAR, value:"John Doe", direction:sql:DIRECTION_IN};
-sql:Parameter para2 = {sqlType:sql:TYPE_INTEGER, value:3, direction:sql:DIRECTION_IN};
-sql:Parameter para3 = {sqlType:sql:TYPE_DOUBLE, value:5000.00, direction:sql:DIRECTION_IN};
-sql:Parameter para4 = {sqlType:sql:TYPE_VARCHAR, value:"UK", direction:sql:DIRECTION_IN};
-sql:Parameter[] parameters = [para1, para2, para3, para4];
+sql:Parameter name = {sqlType:sql:TYPE_VARCHAR, value:"John Doe", direction:sql:DIRECTION_IN};
+sql:Parameter registrationID = {sqlType:sql:TYPE_INTEGER, value:3, direction:sql:DIRECTION_IN};
+sql:Parameter salary = {sqlType:sql:TYPE_DOUBLE, value:5000.00, direction:sql:DIRECTION_IN};
+sql:Parameter country = {sqlType:sql:TYPE_VARCHAR, value:"UK", direction:sql:DIRECTION_IN};
+sql:Parameter[] parameters = [name, registrationID, salary, country];
 var insertCountRet = testDB -> update("INSERT INTO Employee (name, registrationID, salary, country)
                                      values (?,?,?,?)", parameters);
-int insertCount = check insertCountRet;
 _ = testDB -> close();
 ```
