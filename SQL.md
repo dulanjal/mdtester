@@ -1,6 +1,6 @@
 This package provides the functionality required to access and manipulate data stored in any type of relational database. 
 
-The first step to access the database is to create an 'Endpoint', which is a virtual representation of the physical endpoint that you are trying to connect to. For this you need to create an endpoint of SQL client type and provide the necessary connection parameters. That will create a pool of connections to the specified database.
+The first step to access a database is to create an 'Endpoint', which is a virtual representation of the physical endpoint that you are trying to connect to. For this you need to create an endpoint of SQL client type and provide the necessary connection parameters. That will create a pool of connections to the specified database.
 
 Example:
 ```
@@ -13,7 +13,7 @@ endpoint sql:Client testDB {
 ```
 NOTE: You can find the full list of connection properties in the struct ‘ConnectionProperties’.
 
-NOTE: If you are using a database of types: MySQL, SQL Server, Oracle, Sybase, PostgreSQL, DB2, HSQLDB, H2, or Derby, it is recommended to use the Ballerina types specific to them. This package provides a generic type that could be used if you wish to connect to a database type not in that list. Having said that, this type can be used to connect to those standard database types as well as shown in the above example.
+NOTE: If you are using a database of types: MySQL, SQL Server, Oracle, Sybase, PostgreSQL, DB2, HSQLDB, H2, or Derby, it is recommended to use the Ballerina types specific to them. This package provides a generic type that could be used if you wish to connect to a database type not in that list. Having said that, as shown in the above example, this type can be used to connect to those standard database types as well.
 
 Once the endpoint is created, database operations could be executed through that. Following is an example of a SELECT:
 ```
