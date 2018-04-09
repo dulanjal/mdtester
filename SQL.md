@@ -13,7 +13,7 @@ endpoint sql:Client testDB {
 ```
 **NOTE**: You can find the full list of connection properties in the struct ‘ConnectionProperties’.
 
-**NOTE**: If you are using a database of types: MySQL, SQL Server, Oracle, Sybase, PostgreSQL, DB2, HSQLDB, H2, or Derby, it is recommended to use enpdoints created using the client types specific to them, by using relevent ballerina packages. This package provides a generic type (i.e. sql:Client) that could be used if you wish to connect to a database type not in that list. Having said that, as shown in the above example, this type can be used to connect to those standard databases as well.
+**NOTE**: If you are using a database of MySQL, SQL Server, Oracle, Sybase, PostgreSQL, DB2, HSQLDB, H2, or Derby, it is recommended to use enpdoints created using the client types specific to them, by using relevent ballerina packages. This package provides a generic type (i.e. sql:Client) that could be used if you wish to connect to a database type not in that list. Having said that, as shown in the above example, this type can be used to connect to those standard databases as well.
 
 Once the endpoint is created, database operations could be executed through that. Following is an example of a SELECT:
 ```
