@@ -17,7 +17,7 @@ NOTE: You can find the full list of connection properties in the struct ‘Conne
 
 Once the endpoint is created, database operations could be executed through that. Following is an example of a SELECT:
 ```
-var output = testDB -> select("SELECT name from Employee where id = 1", null, null);
+var output = testDB -> select("SELECT name FROM Employee WHERE id = 1", null, null);
 match output {
    table dt => {
       while (dt.hasNext()) {
