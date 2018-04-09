@@ -27,7 +27,7 @@ match output {
             error => return;
             }
          }
-	  }
+      }
       sql:SQLConnectorError => return;
 }
 var closeStatus = testDB -> close();
