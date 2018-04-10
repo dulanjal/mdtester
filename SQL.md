@@ -13,7 +13,7 @@ endpoint sql:Client testDB {
 ```
 **NOTE**: You can find the full list of connection properties in the struct ‘ConnectionProperties’.
 
-**NOTE**: If you are using a MySQL, SQL Server, Oracle, Sybase, PostgreSQL, DB2, HSQLDB, H2, or Derby database, it is recommended to use enpdoints created using the client types specific to them, by using relevent ballerina packages. This package provides a generic type (i.e. sql:Client) that could be used if you wish to connect to a database type not in that list. Having said that, as shown in the above example, this type can be used to connect to those standard databases as well.
+**NOTE**: If you are using a MySQL, SQL Server, Oracle, Sybase, PostgreSQL, DB2, HSQLDB, H2, or Derby database, it is recommended to use endpoints created using the client types specific to them, by using relevent ballerina packages. This package provides a generic type (i.e. sql:Client) that could be used if you wish to connect to a database type not in that list. Having said that, as shown in the above example, this type can be used to connect to those standard databases as well.
 
 Once the endpoint is created, database operations could be executed through that. This package provides support for selecting, inserting, deleting, updating, batch updating, and executing stored procedures.
 
@@ -34,7 +34,7 @@ match output {
 }
 var closeStatus = testDB -> close();
 ```
-As shown in the above example, once the required database operation is done, 'close' function can be called to close the connection pool.
+As shown in the above example, once the required database operation is done, `close()` function can be called to close the connection pool.
 
 Following is an INSERT example to demonstrate the usage of parameters:
 
