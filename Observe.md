@@ -10,12 +10,11 @@ Gauge
 Summary
 Timer
 
-**NOTE:** These metrics will be by default exposed via an endpoint that supports Prometheus format. That being said, metric implementation is capable to support other monitoring solutions by extending ballerina runtime.
-
 #### Counter 
 
 A counter is used to hold a single numerical value that could only increase. This could be used to track counts of events or running totals. For example, total number of successful requests and total number of 5xx Server errors.
 
+Following are example operations that could be performed on a Counter:
 ```ballerina
 //Create a tag
 map tags = {"event_type":"test"};
@@ -120,6 +119,8 @@ io:println("mean: " + timer.mean(observe:TIME_UNIT_SECONDS) + " seconds");
 io:print("percentile values: ");
 io:println(timer.percentileValues(observe:TIME_UNIT_SECONDS));
 ```
+
+**NOTE:** Those metrics will be by default exposed via an endpoint that supports Prometheus format. That being said, metric implementation is capable to support other monitoring solutions by extending ballerina runtime.
 
 ### Tracing
 This package exposes APIs according to OpenTracing specification version 1.1. By default Jaeger OpenTracing implementation is used. 
