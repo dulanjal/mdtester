@@ -14,7 +14,7 @@ Timer
 
 A counter is used to hold a single numerical value that could only increase. This could be used to track counts of events or running totals. For example, total number of successful requests and total number of 5xx Server errors.
 
-Following are example operations that could be performed on a Counter:
+Following code demonstrates how to create a counter with tags and example operations that could be performed on it:
 ```ballerina
 //Create a tag
 map tags = {"event_type":"test"};
@@ -35,6 +35,8 @@ io:println("count: " + counter.count());
 #### Gauge
 
 A gauge is used to hold a single numerical value that could increase as well as decrease. This could be used to report instantaneous values. For example, CPU Usage and Maximum number of open file descriptors.
+
+Following code demonstrates how to create a Gauge with tags and example operations that could be performed on it:
 
 ```ballerina
 //Create a tag
@@ -63,6 +65,7 @@ io:println("gauge: " + gauge.value());
 
 A summary is used to sample the size of events, which means it can calculate the distribution of a value. For example, request duration and response size. It supports returning the count of recorded events and returning the maximum and mean values of events recorded. Furthermore, it could return values at different percentiles.
 
+Following code demonstrates how to create a Summary with tags and example operations that could be performed on it:
 ```ballerina
 //Create a tag
 map tags = {"event_type":"test"};
@@ -95,6 +98,7 @@ io:println("");
 #### Timer
 A timer is similar to a Summary, except it is especially used to sample the time durations. Which means it can aggregate timing durations and provides duration statistics. Similar to Summary, it supports returning the count of recorded items and returning the maximum and mean values of events recorded and as well as returning values at different percentiles. A timer uses a Summary internally to provide these features.
 
+Following code demonstrates how to create a Timer with tags and example operations that could be performed on it:
 ```ballerina
 //Create a timer
 observe:Timer timer = new("event_duration", "Duration of an event.", tags);
@@ -123,21 +127,21 @@ io:println(timer.percentileValues(observe:TIME_UNIT_SECONDS));
 **NOTE:** Those metrics will be by default exposed via an endpoint that supports Prometheus format. That being said, metric implementation is capable to support other monitoring solutions by extending ballerina runtime.
 
 ### Tracing
-This package exposes APIs according to OpenTracing specification version 1.1. By default Jaeger OpenTracing implementation is used. 
+This package exposes APIs according to [OpenTracing specification version 1.1](https://github.com/opentracing/specification/blob/master/specification.md). By default [Jaeger](https://github.com/jaegertracing) OpenTracing implementation is used. 
 
 #### Span
 According to OpenTracing specification, tracing is built around the key concept of a Span. A span encapsulates a start time, finish time, a set of Span Tags, a set of Span Logs, a Span Context and a Reference to a parent span. A single trace could consist of multiple spans, especially when the trace goes across multiple services.
 
 #### Reference Type
 Following are the types of references that could exist between spans:
-REFERENCE_TYPE_CHILDOF - The parent span depends on the child span in some capacity.
-REFERENCE_TYPE_FOLLOWSFROM - The parent span does not depend on the child span.
-REFERENCE_TYPE_ROOT - Root span which has no reference to a parent span.
+`REFERENCE_TYPE_CHILDOF` - The parent span depends on the child span in some capacity.
+`REFERENCE_TYPE_FOLLOWSFROM` - The parent span does not depend on the child span.
+`REFERENCE_TYPE_ROOT` - Root span which has no reference to a parent span.
 
 #### Span Tags
 These are key:value pairs that can be used to maintain metadata of the Span. The keys must be of type string, and the values could be strings, booleans, or numeric types. There is a set of standard tags documented under [OpenTracing Semantic Conventions](https://github.com/opentracing/specification/blob/master/semantic_conventions.md)
 
-**Example of starting Root and Child spans with tags**
+Following is an example of starting spans with `REFERENCE_TYPE_ROOT` and `REFERENCE_TYPE_CHILDOF`, including tags:
 ```ballerina
 //Start a root span with service name ‘Store’, span name ‘Add Item’ and ‘span.kind’ //tag as ‘server’
 observe:Span span = observe:startSpan("Store", "Add Item", {"span.kind":"server"}, observe:REFERENCE_TYPE_ROOT, ());
@@ -149,11 +153,14 @@ observe:Span childSpan = observe:startSpan("Store", "Update Manager Connector",
 ```
 
 #### Span Logs
-This is a key:value map paired with a timestamp. The logs related to the  The keys must be strings, though the values may be of any type. There is a set of standard log fields documented under [OpenTracing Semantic Conventions](https://github.com/opentracing/specification/blob/master/semantic_conventions.md)
+This is a key:value map paired with a timestamp. The keys must be strings, though the values may be of any type. There is a set of standard log fields documented under [OpenTracing Semantic Conventions](https://github.com/opentracing/specification/blob/master/semantic_conventions.md)
 
-**Examples of log types**
+Following are example of usages of span logs:
 ```ballerina
+//Logging any message
 span.log("Something", "Log");
+
+//Loggin an error message
 span.logError("Payload Error", payloadError.message);
 ```
 
@@ -163,6 +170,7 @@ A span has an implementation specific context that can be used to hold data rela
 #### Trace Group
 Trace group is a set of related spans across different services. By defining trace groups, user can start multiple spans of different traces within a service and then propagate those span contexts to other services. Related spans will be associated with the trace via the trace group ID.
 
+Following are examples of injecting a span context to HTTP headers and retrieving the context back. Usually the insertion will be done from the calling service, while the retrieval is done from the called service:
 ```ballerina
 //In order to propagate the span across http requests, the span should be injected to http headers as a span context
 http:Request outRequest = childSpan.injectSpanContextToHttpHeader(new http:Request(), "group-1");
