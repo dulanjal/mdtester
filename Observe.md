@@ -17,6 +17,7 @@ Timer
 A counter is used to hold a single numerical value that could only increase. This could be used to track counts of events or running totals. For example, total number of successful requests and total number of 5xx Server errors.
 
 ```ballerina
+
 //Create a tag
 map tags = {"event_type":"test"};
 
@@ -31,6 +32,7 @@ counter.increment(5);
 
 //Print the current value of the counter
 io:println("count: " + counter.count());
+
 ```ballerina
 
 #### Gauge
